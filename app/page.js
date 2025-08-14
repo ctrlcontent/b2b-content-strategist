@@ -128,8 +128,8 @@ export default function Home() {
             </div>
             <div className="hidden md:block">
               <Image
-                src="/globe.svg"
-                alt=""
+                src="/icon.png"
+                alt="Ctrl+Content logo"
                 width={500}
                 height={500}
                 className="mx-auto w-full max-w-sm"
