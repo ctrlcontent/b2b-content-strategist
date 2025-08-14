@@ -3,21 +3,25 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="w-full bg-[#0B0B1F] text-white">
-      <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <div
-            className="h-8 w-8 rounded-lg"
-            style={{ backgroundImage: "linear-gradient(120deg,#6D28D9,#A21CAF)" }}
-          />
-          <span className="font-semibold tracking-tight">Ctrl+Content</span>
+    <header className="sticky top-0 z-40 bg-white/70 backdrop-blur border-b">
+      <div className="mx-auto max-w-7xl h-14 px-6 md:px-8 flex items-center justify-between">
+        <Link href="/" className="inline-flex items-center gap-2">
+          <span className="block h-2.5 w-2.5 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600" />
+          <span className="font-semibold tracking-tight text-slate-900">
+            Ctrl+Content
+          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6 text-sm text-white/90">
-          <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/#services" className="hover:underline">Services</Link>
-          <Link href="/#contact" className="hover:underline">Contact</Link>
-          <a href="https://cal.com" className="btn px-3 py-1.5 text-sm">Get Started</a>
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          <Link href="#planner" className="text-slate-600 hover:text-slate-900">
+            Planner
+          </Link>
+          <Link href="#how-it-works" className="text-slate-600 hover:text-slate-900">
+            How it works
+          </Link>
+          <Link href="#" className="btn px-3 py-1.5" role="button" aria-label="Get started">
+            Get started
+          </Link>
         </nav>
       </div>
     </header>

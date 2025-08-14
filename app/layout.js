@@ -5,13 +5,14 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 
 const font = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
 export const metadata = {
   title: "Ctrl+Content • B2B Content Strategist",
-  description: "Plan goal-aligned B2B content calendars and briefs.",
+  description:
+    "Plan goal-aligned B2B content calendars and briefs, tailored to your brand voice.",
 };
 
 export default function RootLayout({ children }) {
@@ -19,9 +20,16 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={font.className}>
         <Header />
-        <main className="mx-auto max-w-6xl px-4 py-10">{children}</main>
-        <footer className="border-t py-10 text-center text-sm text-slate-500">
-          Built with ❤️ by Ctrl+Content
+
+        {/* Centered, wide container */}
+        <main className="mx-auto max-w-7xl px-6 md:px-8 py-10">
+          {children}
+        </main>
+
+        <footer className="border-t mt-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-8 py-10 text-center text-sm text-slate-500">
+            Built with ❤️ by Ctrl+Content
+          </div>
         </footer>
       </body>
     </html>

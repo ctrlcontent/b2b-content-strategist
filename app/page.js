@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import PlanView from "./components/PlanView";
 
-/* ---------- ICS builder (unchanged) ---------- */
+/* ---------------------- ICS builder ---------------------- */
 function buildICS(calendar, startDateStr) {
   function fmt(dt) {
     const y = dt.getUTCFullYear();
@@ -26,23 +26,27 @@ function buildICS(calendar, startDateStr) {
       const dayOffset = Math.floor(idx % 5);
       const dt = new Date(startDate);
       dt.setDate(startDate.getDate() + (w.week - 1) * 7 + dayOffset);
-      events.push([
-        "BEGIN:VEVENT",
-        `UID:${w.week}-${idx}-${Math.random().toString(36).slice(2)}@ctrlcontent`,
-        `DTSTAMP:${fmt(new Date())}`,
-        `DTSTART:${fmt(dt)}`,
-        `DTEND:${fmt(new Date(dt.getTime() + 60 * 60 * 1000))}`,
-        `SUMMARY:${(it.title || "").replace(/\r|\n/g, " ")} (${it.format} on ${it.channel})`,
-        `DESCRIPTION:${[
-          `Persona: ${it.persona || ""}`,
-          `Stage: ${it.journeyStage || ""}`,
-          `Primary KW: ${it.primaryKeyword || ""}`,
-          `Supporting KWs: ${(it.supportingKeywords || []).join(", ")}`,
-          `CTA: ${it.cta || ""}`,
-          `Notes: ${it.notes || ""}`,
-        ].join("\\n").replace(/\r|\n/g, " ")}`,
-        "END:VEVENT",
-      ].join("\r\n"));
+      events.push(
+        [
+          "BEGIN:VEVENT",
+          `UID:${w.week}-${idx}-${Math.random().toString(36).slice(2)}@ctrlcontent`,
+          `DTSTAMP:${fmt(new Date())}`,
+          `DTSTART:${fmt(dt)}`,
+          `DTEND:${fmt(new Date(dt.getTime() + 60 * 60 * 1000))}`,
+          `SUMMARY:${(it.title || "").replace(/\r|\n/g, " ")} (${it.format} on ${it.channel})`,
+          `DESCRIPTION:${[
+            `Persona: ${it.persona || ""}`,
+            `Stage: ${it.journeyStage || ""}`,
+            `Primary KW: ${it.primaryKeyword || ""}`,
+            `Supporting KWs: ${(it.supportingKeywords || []).join(", ")}`,
+            `CTA: ${it.cta || ""}`,
+            `Notes: ${it.notes || ""}`,
+          ]
+            .join("\\n")
+            .replace(/\r|\n/g, " ")}`,
+          "END:VEVENT",
+        ].join("\r\n")
+      );
       idx++;
     }
   }
@@ -55,7 +59,7 @@ function buildICS(calendar, startDateStr) {
   ].join("\r\n");
 }
 
-/* ---------- Page ---------- */
+/* ---------------------- Page ---------------------- */
 export default function Home() {
   const [form, setForm] = useState({
     goal: "Generate qualified demo requests",
@@ -106,26 +110,30 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="mb-10">
-        <div className="relative overflow-hidden rounded-3xl bg-white">
+      {/* HERO */}
+      <section className="mb-12">
+        <div className="glass relative overflow-hidden rounded-3xl">
           <div
-            className="absolute inset-0 opacity-[0.3]"
+            className="absolute inset-0 opacity-[0.35] pointer-events-none"
             style={{
               background:
-                "radial-gradient(1200px 400px at 50% -400px, #ede9fe 0, rgba(237,233,254,0) 60%)",
+                "radial-gradient(1200px 420px at 50% -380px, #ede9fe 0, rgba(237,233,254,0) 60%)",
             }}
           />
-          <div className="relative px-6 md:px-10 py-12 md:py-16 text-center">
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
+          <div className="relative px-6 md:px-12 py-14 md:py-20 text-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
               Simulate your content plan in minutes
             </h1>
             <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
-              Plug in your goals, audience, and channels. Get a structured calendar and exportable briefs — tailored to your voice.
+              Plug in your goals, audience, and channels. Get a structured calendar and
+              exportable briefs — tailored to your voice.
             </p>
-            <div className="mt-6 flex items-center justify-center gap-3">
+            <div className="mt-7 flex items-center justify-center gap-3">
               <Link href="#planner" className="btn">Start planning</Link>
-              <Link href="#how-it-works" className="px-4 py-2 rounded-lg border text-sm hover:bg-slate-50">
+              <Link
+                href="#how-it-works"
+                className="ghost-btn px-4 py-2 text-sm"
+              >
                 See it in action
               </Link>
             </div>
@@ -133,9 +141,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Planner form (this is what the button scrolls to) */}
+      {/* PLANNER */}
       <section id="planner">
         <form onSubmit={onSubmit} className="card p-8 grid gap-8">
+          {/* Goal */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Your goal</h2>
             <label className="grid gap-1">
@@ -144,6 +153,7 @@ export default function Home() {
             </label>
           </div>
 
+          {/* Audience */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Audience</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -158,6 +168,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Voice & brand */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Voice & brand</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -188,6 +199,7 @@ export default function Home() {
             </label>
           </div>
 
+          {/* Publishing prefs */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Publishing preferences</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -234,15 +246,27 @@ export default function Home() {
         </form>
       </section>
 
-      {/* Downloads toolbar */}
+      {/* DOWNLOADS TOOLBAR */}
       {calendar && (
-        <div className="sticky top-0 z-10 mt-6 -mx-4 px-4 py-3 bg-[rgba(246,245,255,.9)] backdrop-blur border-b">
-          <div className="mx-auto max-w-6xl flex items-center gap-3">
+        <div className="sticky top-14 z-30 mt-6 -mx-6 md:-mx-8 px-6 md:px-8 py-3 bg-[rgba(246,245,255,.9)] backdrop-blur border-y">
+          <div className="mx-auto max-w-7xl flex items-center gap-3">
             <h3 className="font-semibold">Plan</h3>
+
             <button
               onClick={() => {
                 const rows = [
-                  ["Week","Title","Format","Channel","Persona","Stage","Primary Keyword","Supporting Keywords","CTA","Notes"],
+                  [
+                    "Week",
+                    "Title",
+                    "Format",
+                    "Channel",
+                    "Persona",
+                    "Stage",
+                    "Primary Keyword",
+                    "Supporting Keywords",
+                    "CTA",
+                    "Notes",
+                  ],
                 ];
                 for (const w of calendar.weeks || []) {
                   for (const it of w.items || []) {
@@ -304,7 +328,7 @@ export default function Home() {
                   alert("Could not build ICS: " + (e?.message || e));
                 }
               }}
-              className="btn px-3 py-1.5 text-sm"
+              className="ghost-btn px-3 py-1.5 text-sm"
             >
               Download ICS
             </button>
@@ -312,9 +336,9 @@ export default function Home() {
         </div>
       )}
 
-      {/* Plan cards */}
+      {/* PLAN CARDS */}
       {calendar && (
-        <div className="mt-4">
+        <div className="mt-6">
           <PlanView
             calendar={calendar}
             onBrief={async (_week, _i, item) => {
@@ -333,6 +357,7 @@ export default function Home() {
                 });
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error || "Brief generation failed");
+
                 const b = data.brief || {};
                 const lines = [];
                 lines.push(`# ${b.title || item.title || "Content brief"}`, "");
@@ -349,6 +374,7 @@ export default function Home() {
                 lines.push("", `CTA: ${b.cta || ""}`, "", "Distribution checklist:");
                 (b.distributionChecklist || []).forEach((x) => lines.push(`- ${x}`));
                 lines.push("", `Tone guidance: ${b.toneGuidance || form.voice || ""}`);
+
                 const txt = lines.join("\n");
                 const blob = new Blob([txt], { type: "text/plain;charset=utf-8;" });
                 const url = URL.createObjectURL(blob);
@@ -366,6 +392,18 @@ export default function Home() {
           />
         </div>
       )}
+
+      {/* HOW IT WORKS (simple, optional anchor target) */}
+      <section id="how-it-works" className="mt-16">
+        <div className="card p-8">
+          <h3 className="text-2xl font-semibold tracking-tight mb-3">How it works</h3>
+          <ol className="grid gap-3 list-decimal ml-5 text-slate-700">
+            <li>Enter goals, ICP, tone, timeframe, formats, and channels.</li>
+            <li>We generate a goal-aligned calendar plus optional briefs.</li>
+            <li>Export to CSV and ICS, or download per-item briefs as text.</li>
+          </ol>
+        </div>
+      </section>
     </>
   );
 }
