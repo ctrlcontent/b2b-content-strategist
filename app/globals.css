@@ -11,45 +11,62 @@
   --cc-border:#E5E7EB;        /* gray-200 */
   --cc-primary:#6D28D9;       /* violet-700 */
   --cc-primary-2:#A21CAF;     /* fuchsia-700 */
-  --cc-primary-3:#8B5CF6;     /* violet-500 */
 }
 
 /* Base */
 html,body{ height:100%; }
 body{
-  @apply antialiased;
   background: var(--cc-bg);
   color: var(--cc-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "rlig" 1, "calt" 1;
+  margin: 0;
 }
 
-/* Util: brand button */
+/* Brand button (plain CSS) */
 .btn {
-  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium text-white transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;                /* px-4 py-2 */
+  font-weight: 500;
+  color: #fff;
+  border: 0;
+  border-radius: 0.75rem;              /* ~ rounded-xl */
+  transition: filter .15s ease;
   background-image: linear-gradient(90deg,var(--cc-primary),var(--cc-primary-2));
+  text-decoration: none;
+  cursor: pointer;
 }
 .btn:hover { filter: brightness(1.05); }
-.btn:disabled { @apply opacity-60 cursor-not-allowed; }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
 
 /* Card */
-.card { @apply bg-white rounded-2xl shadow-sm border; border-color: var(--cc-border); }
+.card {
+  background: var(--cc-card);
+  border: 1px solid var(--cc-border);
+  border-radius: 1rem;                 /* ~ rounded-2xl */
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
 
 /* Table */
-.table {
-  @apply min-w-full text-sm;
-}
+.table { min-width: 100%; font-size: 0.875rem; border-collapse: collapse; }
 .table thead tr{
   background: linear-gradient(90deg,var(--cc-primary),var(--cc-primary-2));
   color: #fff;
 }
-.table th, .table td { @apply px-4 py-2; }
-.table tbody tr { @apply border-t; border-color: var(--cc-border); }
+.table th, .table td { padding: 0.5rem 1rem; border-top: 1px solid var(--cc-border); }
+.table thead th { border-top: none; }
 
-/* Small helpers */
-.label { @apply text-sm font-medium text-slate-700; }
+/* Form bits */
+.label { font-size: .875rem; font-weight: 600; color: #334155; }    /* slate-700 */
 .input, .textarea {
-  @apply border rounded-lg px-3 py-2 w-full;
-  border-color: var(--cc-border);
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--cc-border);
+  border-radius: .5rem;                 /* rounded-lg */
+  outline: none;
 }
-.textarea { @apply min-h-[140px]; }
-.section-title { @apply text-3xl font-semibold; }
+.textarea { min-height: 140px; }
+.section-title { font-size: 1.875rem; font-weight: 600; }            /* text-3xl */
