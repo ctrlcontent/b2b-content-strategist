@@ -1,11 +1,11 @@
 // app/layout.js
 import "./globals.css";
 import Header from "./components/Header";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const font = Plus_Jakarta_Sans({
+const font = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -17,11 +17,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={font.className}>
+    <html lang="en" className={font.variable}>
+      <body className="font-sans">
         <Header />
         {/* Centered, wide container using our CSS utilities */}
-        <main className="cc-container cc-py-40">{children}</main>
+        <main className="container-pro section">{children}</main>
 
         <footer className="border-t cc-mt-24">
           <div
