@@ -3,11 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import { Inter } from "next/font/google";
 
-const font = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Ctrl+Content • B2B Content Strategist",
@@ -17,8 +13,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={font.variable}>
-      <body className="font-sans">
+    <html lang="en" className={inter.className}>
+      <body>
         <Header />
         {/* Centered, wide container using our CSS utilities */}
         <main className="container-pro section">{children}</main>

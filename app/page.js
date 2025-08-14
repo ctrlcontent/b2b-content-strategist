@@ -113,11 +113,11 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="cc-hero cc-mb-24">
-        <div className="cc-container">
+        <div className="cc-container container mx-auto px-4">
           <div className="grid items-center gap-12 py-20 md:grid-cols-2 md:py-32">
             <div>
               <span className="cc-eyebrow">Ctrl+Content</span>
-              <h1 className="cc-h1 mt-2">AI content planning, minus the busywork</h1>
+              <h1 className="cc-h1 mt-2 text-slate-900">AI content planning, minus the busywork</h1>
               <p className="cc-lead mt-4">
                 Generate your entire content calendar and briefs in seconds.
               </p>
