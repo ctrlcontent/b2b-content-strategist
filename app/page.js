@@ -111,7 +111,7 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="mb-12">
+      <section className="cc-mb-24">
         <div className="glass relative overflow-hidden rounded-3xl">
           <div
             className="absolute inset-0 opacity-[0.35] pointer-events-none"
@@ -120,22 +120,15 @@ export default function Home() {
                 "radial-gradient(1200px 420px at 50% -380px, #ede9fe 0, rgba(237,233,254,0) 60%)",
             }}
           />
-          <div className="relative px-6 md:px-12 py-14 md:py-20 text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              Simulate your content plan in minutes
-            </h1>
-            <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+          <div className="cc-container cc-inner text-center">
+            <h1 className="cc-h1">Simulate your content plan in minutes</h1>
+            <p className="cc-lead" style={{marginTop:'12px'}}>
               Plug in your goals, audience, and channels. Get a structured calendar and
               exportable briefs — tailored to your voice.
             </p>
-            <div className="mt-7 flex items-center justify-center gap-3">
+            <div style={{marginTop:'22px', display:'flex', gap:'12px', justifyContent:'center'}}>
               <Link href="#planner" className="btn">Start planning</Link>
-              <Link
-                href="#how-it-works"
-                className="ghost-btn px-4 py-2 text-sm"
-              >
-                See it in action
-              </Link>
+              <Link href="#how-it-works" className="ghost-btn px-4 py-2 text-sm">See it in action</Link>
             </div>
           </div>
         </div>
@@ -246,10 +239,19 @@ export default function Home() {
         </form>
       </section>
 
-      {/* DOWNLOADS TOOLBAR */}
+      {/* DOWNLOADS TOOLBAR (centered + sticky under header) */}
       {calendar && (
-        <div className="sticky top-14 z-30 mt-6 -mx-6 md:-mx-8 px-6 md:px-8 py-3 bg-[rgba(246,245,255,.9)] backdrop-blur border-y">
-          <div className="mx-auto max-w-7xl flex items-center gap-3">
+        <div
+          className="cc-toolbar cc-mt-24"
+          style={{
+            background: "rgba(246,245,255,.92)",
+            backdropFilter: "blur(6px)",
+            borderTop: "1px solid #E5E7EB",
+            borderBottom: "1px solid #E5E7EB",
+            padding: "10px 0",
+          }}
+        >
+          <div className="cc-container" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <h3 className="font-semibold">Plan</h3>
 
             <button
@@ -311,8 +313,10 @@ export default function Home() {
               Download CSV
             </button>
 
-            <button
-              onClick={() => {
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
                 try {
                   const ics = buildICS(calendar, form.startDate);
                   const blob = new Blob([ics], { type: "text/calendar;charset=utf-8;" });
@@ -324,21 +328,21 @@ export default function Home() {
                   a.click();
                   a.remove();
                   URL.revokeObjectURL(url);
-                } catch (e) {
-                  alert("Could not build ICS: " + (e?.message || e));
+                } catch (err) {
+                  alert("Could not build ICS: " + (err?.message || err));
                 }
               }}
               className="ghost-btn px-3 py-1.5 text-sm"
             >
               Download ICS
-            </button>
+            </a>
           </div>
         </div>
       )}
 
       {/* PLAN CARDS */}
       {calendar && (
-        <div className="mt-6">
+        <div className="cc-mt-24">
           <PlanView
             calendar={calendar}
             onBrief={async (_week, _i, item) => {
@@ -393,8 +397,8 @@ export default function Home() {
         </div>
       )}
 
-      {/* HOW IT WORKS (simple, optional anchor target) */}
-      <section id="how-it-works" className="mt-16">
+      {/* HOW IT WORKS */}
+      <section id="how-it-works" className="cc-mt-24">
         <div className="card p-8">
           <h3 className="text-2xl font-semibold tracking-tight mb-3">How it works</h3>
           <ol className="grid gap-3 list-decimal ml-5 text-slate-700">

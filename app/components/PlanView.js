@@ -36,8 +36,8 @@ export default function PlanView({ calendar, onBrief }) {
             </div>
           </div>
 
-          {/* Items grid: 1 col on mobile, 2 cols on lg */}
-          <div className="grid gap-5 md:gap-6 lg:grid-cols-2">
+          {/* Items grid: 1 col on mobile, 2 cols on desktop via our utility */}
+          <div className="cc-grid-2">
             {w.items?.map((it, i) => (
               <div
                 key={i}

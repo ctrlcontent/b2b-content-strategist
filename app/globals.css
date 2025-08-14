@@ -2,40 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Brand tokens */
+/* ---------- Brand tokens ---------- */
 :root{
-  --cc-bg:#F6F5FF;           /* soft lavender */
-  --cc-ink:#0F172A;          /* slate-900 */
-  --cc-muted:#64748B;        /* slate-500 */
-  --cc-card:#FFFFFF;         /* white */
-  --cc-border:#E5E7EB;       /* gray-200 */
-  --cc-primary:#6D28D9;      /* violet-700 */
-  --cc-primary-2:#A21CAF;    /* fuchsia-700 */
+  --cc-bg:#F6F5FF;
+  --cc-ink:#0F172A;
+  --cc-card:#FFFFFF;
+  --cc-border:#E5E7EB;
+  --cc-primary:#6D28D9;
+  --cc-primary-2:#A21CAF;
 }
 
+/* Page background with soft glow */
 html,body{height:100%}
 body{
-  margin:0;
-  color:var(--cc-ink);
+  margin:0;color:var(--cc-ink);
   background:
-    radial-gradient(1200px 400px at 50% -100px, #ede9fe 0, rgba(237,233,254,0) 60%),
+    radial-gradient(1200px 420px at 50% -120px, #ede9fe 0, rgba(237,233,254,0) 55%),
     var(--cc-bg);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
 
-/* Pretty button */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:.6rem 1rem;font-weight:600;color:#fff;border:0;border-radius:.75rem;
-  background-image:linear-gradient(90deg,var(--cc-primary),var(--cc-primary-2));
-  cursor:pointer;transition:filter .15s ease, transform .1s ease;
-  text-decoration:none;
-}
-.btn:hover{filter:brightness(1.06); transform:translateY(-1px)}
-.btn:disabled{opacity:.6;cursor:not-allowed}
-
-/* Card */
+/* ---------- Components ---------- */
 .card{
   background:var(--cc-card);
   border:1px solid var(--cc-border);
@@ -43,27 +31,88 @@ body{
   box-shadow:0 1px 2px rgba(0,0,0,.04);
 }
 
-/* Compact tag */
+.glass{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(229,231,235,.7);
+  box-shadow:
+    0 10px 25px rgba(27,27,42,.06),
+    0 2px 8px rgba(27,27,42,.04);
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.7rem 1.05rem;font-weight:700;color:#fff;border:0;border-radius:.75rem;
+  background-image:linear-gradient(90deg,var(--cc-primary),var(--cc-primary-2));
+  cursor:pointer;transition:filter .15s ease, transform .1s ease;
+  text-decoration:none;
+}
+.btn:hover{filter:brightness(1.06); transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+
+.ghost-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--cc-border);border-radius:.75rem;color:#334155;
+  background:#fff;transition:background .15s ease, border-color .15s ease;
+  text-decoration:none;
+}
+.ghost-btn:hover{background:#fafafa;border-color:#d1d5db}
+
+/* Chips (tag pills) */
 .chip{
   display:inline-flex;align-items:center;gap:.4rem;
   padding:.25rem .55rem;border:1px solid var(--cc-border);
-  border-radius:999px;font-size:.75rem;color:#475569; /* slate-600 */
-  background:#fff;
+  border-radius:999px;font-size:.75rem;color:#475569;background:#fff;
 }
 
 /* Inputs */
 .label{font-size:.85rem;font-weight:600;color:#334155}
 .input,.textarea{
-  width:100%;padding:.55rem .75rem;border:1px solid var(--cc-border);
-  border-radius:.6rem;outline:none;background:#fff;
+  width:100%;padding:.6rem .75rem;border:1px solid var(--cc-border);
+  border-radius:.65rem;background:#fff;outline:none;
 }
 .input:focus,.textarea:focus{box-shadow:0 0 0 3px rgba(109,40,217,.12);border-color:#a78bfa}
 .textarea{min-height:140px}
 
-/* Subtle global type rhythm */
+/* Type rhythm */
 body { line-height: 1.55; }
 
-/* Table styling boost */
-table { font-size: 0.875rem; }
-th, td { vertical-align: top; }
+/* Safety if any table remains somewhere */
+table{font-size:.875rem}
+th,td{vertical-align:top}
 
+/* ===== Ctrl+Content mini layout system (no Tailwind dependency for layout) ===== */
+
+/* Centered page container */
+.cc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Flex helpers */
+.cc-flex-between { display:flex; align-items:center; justify-content:space-between; }
+.cc-header { height:56px; }
+
+/* Sticky header + toolbar */
+.cc-sticky { position: sticky; top: 0; z-index: 40; }
+.cc-toolbar { position: sticky; top: 56px; z-index: 30; }
+
+/* Grid (two columns on desktop) */
+.cc-grid-2 { display: grid; gap: 24px; }
+@media (min-width: 1024px) {
+  .cc-grid-2 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Spacing utilities */
+.cc-py-40 { padding-top: 40px; padding-bottom: 40px; }
+.cc-mt-24 { margin-top: 24px; }
+.cc-mb-24 { margin-bottom: 24px; }
+
+/* Text helpers */
+.cc-h1 { font-size: clamp(32px, 3.2vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
+.cc-lead { color:#475569; max-width: 720px; margin-inline:auto; }
+
+/* Make hero look balanced inside the centered container */
+.glass > .cc-inner { padding: 56px 0; }
