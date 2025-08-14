@@ -114,5 +114,17 @@ th,td{vertical-align:top}
 .cc-h1 { font-size: clamp(32px, 3.2vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
 .cc-lead { color:#475569; max-width: 720px; margin-inline:auto; }
 
-/* Make hero look balanced inside the centered container */
-.glass > .cc-inner { padding: 56px 0; }
+/* Hero */
+.cc-hero {
+  background:
+    radial-gradient(1400px 520px at 50% -240px, #ede9fe 0, rgba(237,233,254,0) 70%),
+    var(--cc-bg);
+}
+.cc-eyebrow {
+  display:block;
+  font-size:.875rem;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--cc-primary);
+}

@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import PlanView from "./components/PlanView";
 
 /* ---------------------- ICS builder ---------------------- */
@@ -111,32 +112,36 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="cc-mb-24">
-        <div className="glass relative overflow-hidden rounded-3xl">
-          <div
-            className="absolute inset-0 opacity-[0.35] pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(1200px 420px at 50% -380px, #ede9fe 0, rgba(237,233,254,0) 60%)",
-            }}
-          />
-          <div className="cc-container cc-inner text-center">
-            <h1 className="cc-h1">Create your content plan in minutes</h1>
-            <p className="cc-lead" style={{marginTop:'12px'}}>
-              Enter your goals, audience, and channels. Get a structured calendar and
-              exportable briefs instantly in your voice.
-            </p>
-            <div style={{marginTop:'22px', display:'flex', gap:'12px', justifyContent:'center'}}>
-              <Link href="#planner" className="btn">Start planning</Link>
-              <Link href="#how-it-works" className="ghost-btn px-4 py-2 text-sm">How it works</Link>
+      <section className="cc-hero cc-mb-24">
+        <div className="cc-container">
+          <div className="grid items-center gap-12 py-20 md:grid-cols-2 md:py-32">
+            <div>
+              <span className="cc-eyebrow">Ctrl+Content</span>
+              <h1 className="cc-h1 mt-2">AI content planning, minus the busywork</h1>
+              <p className="cc-lead mt-4">
+                Generate your entire content calendar and briefs in seconds.
+              </p>
+              <div className="mt-8 flex gap-3">
+                <Link href="#planner" className="btn">Start planning</Link>
+                <Link href="#how-it-works" className="ghost-btn px-4 py-2 text-sm">How it works</Link>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <Image
+                src="/globe.svg"
+                alt=""
+                width={500}
+                height={500}
+                className="mx-auto w-full max-w-sm"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* PLANNER */}
-      <section id="planner">
-        <form onSubmit={onSubmit} className="card p-8 grid gap-8">
+      <section id="planner" className="cc-container">
+        <form onSubmit={onSubmit} className="card p-8 md:p-10 grid gap-8 max-w-3xl mx-auto">
           {/* Goal */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Your goal</h2>
