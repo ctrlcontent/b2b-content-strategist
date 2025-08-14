@@ -59,3 +59,11 @@ body{
 }
 .input:focus,.textarea:focus{box-shadow:0 0 0 3px rgba(109,40,217,.12);border-color:#a78bfa}
 .textarea{min-height:140px}
+
+/* Subtle global type rhythm */
+body { line-height: 1.55; }
+
+/* Table styling boost */
+table { font-size: 0.875rem; }
+th, td { vertical-align: top; }
+
