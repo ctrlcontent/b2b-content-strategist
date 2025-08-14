@@ -8,7 +8,7 @@ export default function Header() {
         <Link href="/" className="inline-flex items-center gap-2">
           <span className="block h-2.5 w-2.5 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600" />
           <span className="font-semibold tracking-tight text-slate-900">
-            Ctrl+Content
+            Ctrl+Content • Beta
           </span>
         </Link>
 
