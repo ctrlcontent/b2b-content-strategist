@@ -121,14 +121,14 @@ export default function Home() {
             }}
           />
           <div className="cc-container cc-inner text-center">
-            <h1 className="cc-h1">Simulate your content plan in minutes</h1>
+            <h1 className="cc-h1">Create your content plan in minutes</h1>
             <p className="cc-lead" style={{marginTop:'12px'}}>
-              Plug in your goals, audience, and channels. Get a structured calendar and
-              exportable briefs — tailored to your voice.
+              Enter your goals, audience, and channels. Get a structured calendar and
+              exportable briefs instantly in your voice.
             </p>
             <div style={{marginTop:'22px', display:'flex', gap:'12px', justifyContent:'center'}}>
               <Link href="#planner" className="btn">Start planning</Link>
-              <Link href="#how-it-works" className="ghost-btn px-4 py-2 text-sm">See it in action</Link>
+              <Link href="#how-it-works" className="ghost-btn px-4 py-2 text-sm">How it works</Link>
             </div>
           </div>
         </div>
