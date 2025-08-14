@@ -1,26 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}"
   ],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['var(--font-sans)', 'sans-serif'],
-      },
-      colors: {
-        'brand-indigo': 'var(--brand-indigo)',
-        'brand-magenta': 'var(--brand-magenta)',
-        surface: 'var(--surface)',
-        border: 'var(--border)',
-        ring: 'var(--ring)',
-      },
-      boxShadow: {
-        pro: 'var(--shadow)',
-      },
-    },
-  },
+  theme: { extend: {} },
   plugins: [],
 };
