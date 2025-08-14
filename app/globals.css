@@ -1,26 +1,55 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===== Ctrl+Content brand tokens ===== */
+:root{
+  --cc-bg:#F6F5FF;            /* soft lavender */
+  --cc-ink:#0F172A;           /* slate-900 */
+  --cc-muted:#64748B;         /* slate-500 */
+  --cc-card:#FFFFFF;          /* white */
+  --cc-border:#E5E7EB;        /* gray-200 */
+  --cc-primary:#6D28D9;       /* violet-700 */
+  --cc-primary-2:#A21CAF;     /* fuchsia-700 */
+  --cc-primary-3:#8B5CF6;     /* violet-500 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Base */
+html,body{ height:100%; }
+body{
+  @apply antialiased;
+  background: var(--cc-bg);
+  color: var(--cc-ink);
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Util: brand button */
+.btn {
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium text-white transition;
+  background-image: linear-gradient(90deg,var(--cc-primary),var(--cc-primary-2));
 }
+.btn:hover { filter: brightness(1.05); }
+.btn:disabled { @apply opacity-60 cursor-not-allowed; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Card */
+.card { @apply bg-white rounded-2xl shadow-sm border; border-color: var(--cc-border); }
+
+/* Table */
+.table {
+  @apply min-w-full text-sm;
 }
+.table thead tr{
+  background: linear-gradient(90deg,var(--cc-primary),var(--cc-primary-2));
+  color: #fff;
+}
+.table th, .table td { @apply px-4 py-2; }
+.table tbody tr { @apply border-t; border-color: var(--cc-border); }
+
+/* Small helpers */
+.label { @apply text-sm font-medium text-slate-700; }
+.input, .textarea {
+  @apply border rounded-lg px-3 py-2 w-full;
+  border-color: var(--cc-border);
+}
+.textarea { @apply min-h-[140px]; }
+.section-title { @apply text-3xl font-semibold; }

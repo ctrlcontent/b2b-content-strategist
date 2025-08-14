@@ -1,16 +1,15 @@
 // app/components/CalendarTable.js
 export default function CalendarTable({ calendar, onBrief }) {
-  if (!calendar || !calendar.weeks || calendar.weeks.length === 0) {
-    return <p className="mt-4 text-gray-600">No items to display.</p>;
-  }
+  if (!calendar || !calendar.weeks?.length) {
+    return <p className="mt-4 text-slate-600">No items to display.</p>;
+    }
 
   return (
     <div className="space-y-6">
-      {/* Pillars */}
       {calendar.pillars?.length ? (
-        <div>
+        <div className="card p-4">
           <h3 className="text-xl font-semibold mb-2">Pillars</h3>
-          <ul className="list-disc ml-6">
+          <ul className="list-disc ml-6 text-slate-700">
             {calendar.pillars.map((p, i) => (
               <li key={i}><span className="font-medium">{p.name}</span>: {p.why}</li>
             ))}
@@ -18,39 +17,38 @@ export default function CalendarTable({ calendar, onBrief }) {
         </div>
       ) : null}
 
-      {/* Weeks */}
       {calendar.weeks.map((w) => (
-        <div key={w.week} className="border rounded-xl overflow-hidden">
-          <div className="px-4 py-3 bg-gray-50 border-b">
+        <div key={w.week} className="card overflow-hidden">
+          <div className="px-4 py-3 border-b">
             <h4 className="font-semibold">Week {w.week}</h4>
           </div>
           <div className="overflow-x-auto">
-            <table className="min-w-full text-sm">
-              <thead className="bg-gray-100">
+            <table className="table">
+              <thead>
                 <tr className="text-left">
-                  <th className="px-4 py-2">Title</th>
-                  <th className="px-4 py-2">Format</th>
-                  <th className="px-4 py-2">Channel</th>
-                  <th className="px-4 py-2">Persona</th>
-                  <th className="px-4 py-2">Stage</th>
-                  <th className="px-4 py-2">Primary keyword</th>
-                  <th className="px-4 py-2">CTA</th>
-                  <th className="px-4 py-2">Actions</th>
+                  <th>Title</th>
+                  <th>Format</th>
+                  <th>Channel</th>
+                  <th>Persona</th>
+                  <th>Stage</th>
+                  <th>Primary keyword</th>
+                  <th>CTA</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {w.items?.map((it, i) => (
-                  <tr key={i} className="border-t">
-                    <td className="px-4 py-2 font-medium">{it.title}</td>
-                    <td className="px-4 py-2">{it.format}</td>
-                    <td className="px-4 py-2">{it.channel}</td>
-                    <td className="px-4 py-2">{it.persona}</td>
-                    <td className="px-4 py-2">{it.journeyStage}</td>
-                    <td className="px-4 py-2">{it.primaryKeyword}</td>
-                    <td className="px-4 py-2">{it.cta}</td>
-                    <td className="px-4 py-2">
+                  <tr key={i}>
+                    <td className="font-medium">{it.title}</td>
+                    <td>{it.format}</td>
+                    <td>{it.channel}</td>
+                    <td>{it.persona}</td>
+                    <td>{it.journeyStage}</td>
+                    <td>{it.primaryKeyword}</td>
+                    <td>{it.cta}</td>
+                    <td>
                       <button
-                        className="text-xs bg-black text-white rounded px-2 py-1"
+                        className="btn px-3 py-1 text-xs"
                         onClick={() => onBrief?.(w.week, i, it)}
                       >
                         Generate brief
@@ -61,9 +59,10 @@ export default function CalendarTable({ calendar, onBrief }) {
               </tbody>
             </table>
           </div>
+
           {w.items?.some(it => it.supportingKeywords?.length || it.notes) ? (
-            <div className="px-4 py-3 text-xs text-gray-600 bg-gray-50">
-              <p className="mb-1"><span className="font-semibold">Notes & supporting keywords</span></p>
+            <div className="px-4 py-3 text-xs text-slate-600 bg-slate-50">
+              <p className="mb-1 font-medium">Notes & supporting keywords</p>
               <ul className="list-disc ml-5">
                 {w.items?.map((it, i) => (
                   <li key={i}>
